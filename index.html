@@ -1,0 +1,90 @@
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>JQuery</title>
+   </head>
+   <body>
+    <header class="container">
+      <h1>Galeria de imagens</h1>
+      <button type="submit">Nova imagem +</button>
+    </header>
+    <form>
+      <h2>Inserir nova imagem</h2>
+      <input type="url" id="endereço-imagem-nova" required placeholder="url da imagem">
+      <button type="submit">Adicionar +</button>
+      <button type="submit" id="butao-cancelar">Cancelar</button>
+    </form>
+     <ul>
+      <li>
+         <img src="./foto1.jpg" alt="pintura de um gato">
+         <div class="overlay-image-link">
+            <a href="./foto1.jpg" title="Ver imagem em tamanho real" target="_blank">
+               Ver imagem em tamanho real
+            </a>  
+            </div>
+        </li>
+        <li>
+         <img src="./foto2.jpg" alt="Ave cor de rosa">
+         <div class="overlay-image-link">
+            <a href="./foto2.jpg" title="Ver imagem em tamanho real" target="_blank">
+               Ver imagem em tamanho real
+            </a>  
+            </div>
+        </li>
+        <li>
+         <img src="./foto3.jpg" alt="filhotes de cachorros">
+         <div class="overlay-image-link">
+            <a href="./foto3.jpg" title="Ver imagem em tamanho real" target="_blank">
+               Ver imagem em tamanho real
+            </a>  
+            </div>
+        </li>
+        <li>
+         <img src="./foto4.jpg" alt="imagem de uma flor">
+         <div class="overlay-image-link">
+            <a href="./foto4.jpg" title="Ver imagem em tamanho real" target="_blank">
+               Ver imagem em tamanho real
+            </a>  
+            </div>
+        </li>
+      
+      
+     </ul>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+      
+      $('header button').click(function(){
+         $('form').slideDown();
+      })
+      $('#butao-cancelar').click(function(){
+         $('form').slideUp();
+      })
+     $('form').on('submit', function(e){
+         const enderecoDaNovaImagem = $('#endereço-imagem-nova').val();
+         
+         e.preventDefault();
+         //adicionar um novo elemento na lista de imagens
+         const novoItem = $('<li style="display:none"></li>');
+         $(`<img src='${enderecoDaNovaImagem}'/>`).appendTo(novoItem);
+         $(` 
+         <div class="overlay-image-link">
+            <a href="${enderecoDaNovaImagem}" title="Ver imagem em tamanho real" target="_blank">
+               Ver imagem em tamanho real
+            </a>  
+            </div>
+               `).appendTo(novoItem);
+               $(novoItem).appendTo('ul');//adiconando a lista de imagens 
+               $(novoItem).fadeIn(1000); 
+               $('#endereço-imagem-nova').val('');
+                 
+              !
+      })
+
+    </script>
+
+    
+   </body>
+   </html>
